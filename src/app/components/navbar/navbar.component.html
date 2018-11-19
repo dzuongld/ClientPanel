@@ -29,7 +29,7 @@
 
       <ul class="navbar-nav ml-auto">
         <li
-          *ngIf="!isLoggedIn"
+          *ngIf="!isLoggedIn && showRegister"
           class="nav-item"
         >
           <a
@@ -38,7 +38,7 @@
           >Register</a>
         </li>
         <li
-          *ngIf="!isLoggedIn"
+          *ngIf="!isLoggedIn && showRegister"
           class="nav-item"
         >
           <a
