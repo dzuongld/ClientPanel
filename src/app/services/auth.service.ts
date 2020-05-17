@@ -1,37 +1,38 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-
-  constructor(
-    private auth: AngularFireAuth
-  ) { }
+  constructor(private auth: AngularFireAuth) {}
 
   login(email: string, password: string) {
     // return a new promise
     return new Promise((resolve, reject) => {
-      this.auth.auth.signInWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData), error => reject(error));
+      this.auth.signInWithEmailAndPassword(email, password).then(
+        (userData) => resolve(userData),
+        (error) => reject(error)
+      );
     });
   }
 
   register(email: string, password: string) {
     // return a new promise
     return new Promise((resolve, reject) => {
-      this.auth.auth.createUserWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData), error => reject(error));
+      this.auth.createUserWithEmailAndPassword(email, password).then(
+        (userData) => resolve(userData),
+        (error) => reject(error)
+      );
     });
   }
 
   getAuth() {
-    return this.auth.authState.pipe(map(auth => auth));
+    return this.auth.authState.pipe(map((auth) => auth));
   }
 
   logout() {
-    this.auth.auth.signOut();
+    this.auth.signOut();
   }
 }
